@@ -1,0 +1,19 @@
+---
+const { name, img } = Astro.props;
+---
+
+<div
+  class="flex flex-col gap-4 items-center bg-[#222222] rounded-xl p-3 min-w-48"
+>
+  <div>
+    <img src={img} alt={`Entrenador(a): ${name}`} />
+  </div>
+  <p>{name}</p>
+  <div>
+    <span class="flex flex-row gap-4 w-full">
+      <img src="./instagram.png" class="w-7 h-7 cursor-pointer" />
+      <img src="./facebook.png" class="w-7 h-7 cursor-pointer" />
+      <img src="./twitter.png" class="w-7 h-7 cursor-pointer" />
+    </span>
+  </div>
+</div>
