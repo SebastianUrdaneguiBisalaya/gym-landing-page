@@ -23,7 +23,10 @@ const { title, price, benefits } = Astro.props as Props;
       {
         benefits.map((benefit) => (
           <span class="flex flex-row gap-2 items-center">
-            <img src="./circle-outline-check.png" class="w-4 h-4" />
+            <img
+              src="https://res.cloudinary.com/drzumfcdp/image/upload/v1734905591/gym24/circle-outline-check_swfokq.png"
+              class="w-4 h-4"
+            />
             <li class="text-sm">{benefit}</li>
           </span>
         ))
