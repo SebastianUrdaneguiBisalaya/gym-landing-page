@@ -1,8 +1,380 @@
 ---
+import Button from "../components/Button.astro";
+import CardMembership from "../components/CardMembership.astro";
+import CardReason from "../components/CardReason.astro";
+import CardTrainer from "../components/CardTrainer.astro";
 import Layout from "../layouts/Layout.astro";
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import { memberships, reasons, trainers } from "../data";
 ---
 
-<Layout />
+<Layout>
+  <main class="flex flex-col justify-center items-center mb-20">
+    <section class="relative flex justify-center items-center mb-12">
+      <img
+        id="background"
+        src="https://res.cloudinary.com/drzumfcdp/image/upload/v1734905594/gym24/background-mobile_hqh7ih.png"
+      />
+      <nav
+        class="md:grid md:grid-cols-2 pt-10 pb-5 top-0 w-full max-w-[1200px] px-10 fixed z-[100] rounded-xl"
+      >
+        <img
+          src="https://res.cloudinary.com/drzumfcdp/image/upload/v1734905594/gym24/GYM24_-_logo_d2jy4q.png"
+          class="hidden md:block"
+        />
+        <div
+          class="flex flex-row justify-between md:justify-end cursor-pointer md:hidden"
+        >
+          <div>
+            <img
+              src="https://res.cloudinary.com/drzumfcdp/image/upload/v1734905594/gym24/GYM24_-_logo_d2jy4q.png"
+            />
+          </div>
+          <img
+            id="menu-hamburger"
+            src="https://res.cloudinary.com/drzumfcdp/image/upload/v1734905597/gym24/menu_vqyob3.png"
+            class="hover:border-2 hover:border-white rounded-md p-1"
+          />
+        </div>
+        <div id="list-nav" class="relative hidden md:block">
+          <ul
+            class="flex flex-col gap-2 bg-[#222222] md:bg-transparent w-full md:flex-row justify-between font-poppins mt-4 p-4 md:p-0 rounded-lg"
+          >
+            <li
+              class="cursor-pointer hover:font-bold text-xs text-black md:text-white bg-[#FAF000] md:bg-transparent rounded"
+            >
+              <a href="#benefits" class="w-full h-full p-3 md:p-0 block"
+                >Ventajas</a
+              >
+            </li>
+            <li
+              class="cursor-pointer hover:font-bold text-xs text-black md:text-white bg-[#FAF000] md:bg-transparent rounded"
+            >
+              <a href="#membership" class="w-full h-full p-3 md:p-0 block"
+                >Membresías</a
+              >
+            </li>
+            <li
+              class="cursor-pointer hover:font-bold text-xs text-black md:text-white bg-[#FAF000] md:bg-transparent rounded"
+            >
+              <a href="#about-us" class="w-full h-full p-3 md:p-0 block"
+                >Acerca de nosotros</a
+              >
+            </li>
+            <li
+              class="cursor-pointer hover:font-bold text-xs text-black md:text-white bg-[#FAF000] md:bg-transparent rounded"
+            >
+              <a href="#trainers" class="w-full h-full p-3 md:p-0 block"
+                >Entrenadores</a
+              >
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div
+        class="absolute w-full px-10 z-10 max-w-[1200px] flex flex-col items-center md:items-start justify-center md:justify-start"
+      >
+        <h1
+          class="w-[100%] md:w-[70%] text-center md:text-left font-poppins text-2xl sm:text-3xl md:text-5xl font-bold mb-6"
+        >
+          Sesión de prueba gratuita con un entrenador
+        </h1>
+        <Button title="Detalles" href="#benefits" />
+      </div>
+    </section>
+    <section
+      id="benefits"
+      class="max-w-[1200px] px-10 flex flex-col justify-center items-center font-poppins w-full mb-28"
+    >
+      <h2
+        class="text-center lg:text-left w-full text-xl sm:text-2xl md:text-4xl font-bold mb-16"
+      >
+        Razones para unirte
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20">
+        {
+          reasons.map((reason) => (
+            <CardReason
+              icon={reason.icon}
+              title={reason.title}
+              description={reason.description}
+            />
+          ))
+        }
+      </div>
+    </section>
+    <section
+      id="membership"
+      class="max-w-[1200px] px-10 flex flex-col justify-center items-center font-poppins w-full mb-28"
+    >
+      <h2
+        class="text-center w-full text-xl sm:text-2xl md:text-4xl font-bold mb-16"
+      >
+        Membresías del gimnasio
+      </h2>
+      <div
+        class="sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-8 flex overflow-x-auto scrollbar-hidden max-w-full"
+      >
+        {
+          memberships.map((membership) => (
+            <CardMembership
+              title={membership.title}
+              price={membership.price}
+              benefits={membership.benefits}
+            />
+          ))
+        }
+      </div>
+    </section>
+    <section
+      id="about-us"
+      class="max-w-[1200px] px-10 flex flex-col justify-center items-center font-poppins w-full mb-28"
+    >
+      <div class="md:grid lg:grid-cols-2 flex flex-col justify-center gap-10">
+        <div class="flex flex-col justify-center">
+          <h2
+            class="text-center lg:text-left w-full text-xl sm:text-2xl md:text-4xl font-bold mb-16"
+          >
+            Acerca de nosotros
+          </h2>
+          <p class="prose prose-invert">
+            Gym24 es un centro de fitness líder ubicado cerca de la estación de
+            metro Grushevka, que ofrece más de 1500 m² de espacio dedicado a
+            equipos de entrenamiento de primera línea de marcas líderes como
+            Hammer Strength, Life Fitness y TechnoGym.
+          </p>
+          <br />
+          <p class="prose prose-invert">
+            Con opciones de membresía asequibles, Gym24 es accesible para todos
+            aquellos que quieran alcanzar sus objetivos de fitness, ya sea
+            desarrollar fuerza, aumentar la resistencia o perder peso.
+          </p>
+          <br />
+          <p class="prose prose-invert">
+            Los entrenadores certificados de Gym24 brindan orientación y apoyo
+            expertos para desarrollar planes de entrenamiento personalizados
+            adaptados a las necesidades y objetivos de cada individuo.
+          </p>
+        </div>
+        <div class="w-full flex flex-col items-center justify-end">
+          <div class="flex flex-col justify-end max-w-lg">
+            <div id="container-images" class="flex flex-row w-full">
+              <img
+                id="current-image"
+                src="https://res.cloudinary.com/drzumfcdp/image/upload/v1734905589/gym24/about-1_sipqhw.png"
+                class="w-full h-full object-cover rounded-xl"
+              />
+            </div>
+            <div class="flex flex-row justify-between items-center mt-4">
+              <div id="active-container-images" class="flex flex-row gap-4">
+                <span
+                  id="about-image-1"
+                  class="w-[2.5rem] h-[2.5px] bg-image-show rounded-md cursor-pointer"
+                ></span>
+                <span
+                  id="about-image-2"
+                  class="w-[2.5rem] h-[2.5px] bg-image-off rounded-md cursor-pointer"
+                ></span>
+                <span
+                  id="about-image-3"
+                  class="w-[2.5rem] h-[2.5px] bg-image-off rounded-md cursor-pointer"
+                ></span>
+                <span
+                  id="about-image-4"
+                  class="w-[2.5rem] h-[2.5px] bg-image-off rounded-md cursor-pointer"
+                ></span>
+              </div>
+              <div class="flex flex-row justify-between items-center gap-4">
+                <span id="arrowLeft" class="cursor-pointer">
+                  <img
+                    src="https://res.cloudinary.com/drzumfcdp/image/upload/v1734905590/gym24/arrow-left_hqiyhy.png"
+                    class="w-full h-full object-cover rounded-xl"
+                  />
+                </span>
+                <span id="arrowRight" class="cursor-pointer">
+                  <img
+                    src="https://res.cloudinary.com/drzumfcdp/image/upload/v1734905590/gym24/arrow-right_hejmdh.png"
+                    class="w-full h-full object-cover rounded-xl"
+                  />
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section
+      id="trainers"
+      class="max-w-[1200px] px-10 flex flex-col justify-center items-center font-poppins w-full mb-28"
+    >
+      <h2
+        class="text-center lg:text-left w-full text-xl sm:text-2xl md:text-4xl font-bold mb-16"
+      >
+        Staff de entrenadores
+      </h2>
+      <div
+        class="md:grid md:grid-cols-3 lg:grid-cols-4 flex flex-row gap-6 overflow-x-auto scrollbar-hidden max-w-full"
+      >
+        {
+          trainers.map((trainer) => (
+            <CardTrainer name={trainer.name} img={trainer.img} />
+          ))
+        }
+      </div>
+    </section>
+    <footer
+      class="max-w-[1200px] px-10 flex flex-col justify-center items-center font-poppins w-full"
+    >
+      <div
+        class="grid grid-cols-2 md:grid-cols-3 gap-4 justify-between items-center w-full"
+      >
+        <div class="hidden md:flex md:flex-col md:gap-4">
+          <div>
+            <img
+              src="https://res.cloudinary.com/drzumfcdp/image/upload/v1734905594/gym24/GYM24_-_logo_d2jy4q.png"
+            />
+          </div>
+          <p class="text-sm pr-10">
+            Desarrolle fuerza y ​​confianza en nuestro gimnasio con equipos de
+            última generación, entrenamiento personalizado y una comunidad
+            motivadora.
+          </p>
+        </div>
+        <div class="flex flex-col gap-2">
+          <p class="font-bold mb-4">Dirección</p>
+          <p class="text-sm">Perú, Lima</p>
+          <p class="text-sm">Salamanca, Ate</p>
+          <p class="text-sm">Avenido Los Quechus 147</p>
+        </div>
+        <div class="flex flex-col w-full gap-2">
+          <p class="font-bold mb-4">Contacto</p>
+          <span class="flex flex-row gap-4 w-full">
+            <div>
+              <img
+                src="https://res.cloudinary.com/drzumfcdp/image/upload/v1734905591/gym24/call_zsjoou.png"
+              />
+            </div>
+            <p class="text-sm">+51 999 999 999</p>
+          </span>
+          <span class="flex flex-row gap-4 w-full">
+            <div>
+              <img
+                src="https://res.cloudinary.com/drzumfcdp/image/upload/v1734905594/gym24/email_cux0qt.png"
+              />
+            </div>
+            <p class="text-sm">gym@gmail.com</p>
+          </span>
+          <span class="flex flex-row gap-4 w-full">
+            <img
+              src="https://res.cloudinary.com/drzumfcdp/image/upload/v1734905596/gym24/instagram_q9ouno.png"
+              class="w-7 h-7 cursor-pointer"
+            />
+            <img
+              src="https://res.cloudinary.com/drzumfcdp/image/upload/v1734905594/gym24/facebook_tennts.png"
+              class="w-7 h-7 cursor-pointer"
+            />
+            <img
+              src="https://res.cloudinary.com/drzumfcdp/image/upload/v1734905601/gym24/twitter_keo5qy.png"
+              class="w-7 h-7 cursor-pointer"
+            />
+            <img
+              src="https://res.cloudinary.com/drzumfcdp/image/upload/v1734905589/gym24/youtube_bz4y64.png"
+              class="w-7 h-7 cursor-pointer"
+            />
+          </span>
+        </div>
+      </div>
+    </footer>
+  </main>
+</Layout>
+
+<style>
+  section {
+    scroll-margin-top: 100px;
+  }
+  #background {
+    content: url("https://res.cloudinary.com/drzumfcdp/image/upload/v1734905591/gym24/background-min-mobile_kp1jl7.png");
+  }
+  @media (width >= 393px) and (width < 1000px) {
+    #background {
+      content: url("https://res.cloudinary.com/drzumfcdp/image/upload/v1734905594/gym24/background-mobile_hqh7ih.png");
+    }
+  }
+  @media (min-width: 1000px) {
+    #background {
+      content: url("https://res.cloudinary.com/drzumfcdp/image/upload/v1734905594/gym24/background-desktop_mxqzx7.png");
+    }
+  }
+  .scrollbar-hidde::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hidden {
+    scrollbar-width: none;
+  }
+  .scrollbar-hidden {
+    -ms-overflow-style: none;
+  }
+  .bg-image-show {
+    background-color: #faff00;
+  }
+  .bg-image-off {
+    background-color: #ffffff;
+  }
+</style>
+
+<script>
+  const images = [
+    "https://res.cloudinary.com/drzumfcdp/image/upload/v1734905589/gym24/about-1_sipqhw.png",
+    "https://res.cloudinary.com/drzumfcdp/image/upload/v1734905589/gym24/about-2_bbdrc2.png",
+    "https://res.cloudinary.com/drzumfcdp/image/upload/v1734905590/gym24/about-3_ylp5r6.png",
+    "https://res.cloudinary.com/drzumfcdp/image/upload/v1734905590/gym24/about-4_f5yo5h.png",
+  ];
+  let currentIndex = 0;
+  const currentImage =
+    document.querySelector<HTMLImageElement>("#current-image");
+  const nextBtn = document.getElementById("arrowRight");
+  const prevBtn = document.getElementById("arrowLeft");
+  const activeContainerImages = document.querySelectorAll(
+    "#active-container-images > span"
+  );
+  const menuHamburger = document.getElementById("menu-hamburger");
+  const listNav = document.querySelector("#list-nav");
+  function updateImage() {
+    if (currentImage) {
+      currentImage.src = images[currentIndex];
+      activeContainerImages.forEach((image) => {
+        image.classList.remove("bg-image-show");
+        image.classList.add("bg-image-off");
+        activeContainerImages[currentIndex].classList.remove("bg-image-off");
+        activeContainerImages[currentIndex].classList.add("bg-image-show");
+      });
+    }
+  }
+  activeContainerImages.forEach((image, index) => {
+    image.addEventListener("click", () => {
+      currentIndex = index;
+      updateImage();
+    });
+  });
+  nextBtn?.addEventListener("click", () => {
+    currentIndex = (currentIndex + 1) % images.length;
+    updateImage();
+  });
+  prevBtn?.addEventListener("click", () => {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    updateImage();
+  });
+  menuHamburger?.addEventListener("click", () => {
+    listNav?.classList.toggle("hidden");
+  });
+  const nav = document.querySelector("nav");
+  let lastScrollY = 0;
+  window.addEventListener("scroll", () => {
+    const currentScrollY = window.scrollY;
+    if (currentScrollY > 0 && currentScrollY > lastScrollY) {
+      nav?.classList.add("backdrop-blur-[10px]");
+    } else if (currentScrollY === 0) {
+      nav?.classList.remove("backdrop-blur-[10px]");
+    }
+    lastScrollY = currentScrollY;
+  });
+</script>
