@@ -1,125 +1,10 @@
 ---
 import Button from "../components/Button.astro";
+import CardMembership from "../components/CardMembership.astro";
+import CardReason from "../components/CardReason.astro";
 import CardTrainer from "../components/CardTrainer.astro";
 import Layout from "../layouts/Layout.astro";
-const reasons = [
-  {
-    title: "15000 sq.m.",
-    icon: "./icon_line.png",
-    description:
-      "Un amplio gimnasio para practicar deporte: una distancia segura entre las máquinas de ejercicio",
-  },
-  {
-    title: "Más de 200 equipos",
-    icon: "./weights.png",
-    description:
-      "Sin colas en los simuladores. Equipamiento de primera calidad de LifeStyle, Hammer Strength, TechnoGym.",
-  },
-  {
-    title: "4 zonas de entrenamiento",
-    icon: "./training.png",
-    description:
-      "Desde cardio hasta funcional y ciclismo. Zona separada para boxeo y artes marciales mixtas",
-  },
-  {
-    title: "Funcionamiento las 24 horas",
-    icon: "./clock.png",
-    description:
-      "El gimnasio está abierto las 24 horas del día, también los fines de semana y feriados.",
-  },
-];
-
-const memberships = [
-  {
-    title: "Paquete 'Trial'",
-    price: "0",
-    benefits: [
-      "Acceso al gimnasio desde las 8:00 a.m. hasta las 2:00 p.m.",
-      "El entrenador a cargo te inducirá a las sesiones.",
-    ],
-  },
-  {
-    title: "Paquete 'Free Time'",
-    price: "49",
-    benefits: [
-      "La entrada del gimnasio es desde las 2:00 p.m. hasta las 4:00 p.m.",
-      "Sin suspensión de la membresía del gimnasio.",
-      "Acompañamiento del entrenador en las sesiones.",
-    ],
-  },
-  {
-    title: "Paquete '1 Mes 24/7'",
-    price: "85",
-    benefits: [
-      "Visita sin restricciones 24/7.",
-      "Acompañamiento del entrenador en las sesiones.",
-    ],
-  },
-  {
-    title: "Paquete 'Easy Start'",
-    price: "119",
-    benefits: [
-      "Visita sin restricciones 24/7.",
-      "Programa de entrenador personal.",
-      "Acceso a la aplicación del gimnasio.",
-      "Soporte del entrenador.",
-    ],
-  },
-  {
-    title: "Paquete 'In Shape (AM)'",
-    price: "165",
-    benefits: [
-      "Entrenamientos en mini grupos hasta las 2:00 p.m.",
-      "Sin suspensión de la membresía del gimnasio.",
-      "Clases con el entrenador en mini grupos 3 veces por semana.",
-      "Soporte del entrenador.",
-    ],
-  },
-  {
-    title: "Paquete 'In Shape (PM)'",
-    price: "195",
-    benefits: [
-      "Entrenamientos en mini grupos hasta las 5:00 p.m.",
-      "Sin suspensión de la membresía del gimnasio.",
-      "Clases con el entrenador en mini grupos 3 veces por semana.",
-      "Soporte del entrenador.",
-    ],
-  },
-];
-const trainers = [
-  {
-    name: "Victoria Rodriguez",
-    img: "./trainer-1.png",
-  },
-  {
-    name: "Elizabeth Smith",
-    img: "./trainer-2.png",
-  },
-  {
-    name: "Ivan Ivanov",
-    img: "./trainer-3.png",
-  },
-  {
-    name: "Carla Brown",
-    img: "./trainer-4.png",
-  },
-  {
-    name: "Antonio Perez",
-    img: "./trainer-5.png",
-  },
-  {
-    name: "Carlos Pastori",
-    img: "./trainer-6.png",
-  },
-  {
-    name: "Andrew Johnson",
-    img: "./trainer-7.png",
-  },
-  {
-    name: "Nicole Smith",
-    img: "./trainer-8.png",
-  },
-];
+import { memberships, reasons, trainers } from "../data";
 ---
 
 <Layout>
@@ -200,18 +85,11 @@ const trainers = [
       <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20">
         {
           reasons.map((reason) => (
-            <div class="flex flex-row items-center gap-5">
-              <div class="w-[80px] h-[80px]">
-                <img
-                  src={reason.icon}
-                  class="w-full h-full object-scale-down"
-                />
-              </div>
-              <div>
-                <p class="text-[18px] font-bold">{reason.title}</p>
-                <p class="text-sm">{reason.description}</p>
-              </div>
-            </div>
+            <CardReason
+              icon={reason.icon}
+              title={reason.title}
+              description={reason.description}
+            />
           ))
         }
       </div>
@@ -230,26 +108,11 @@ const trainers = [
       >
         {
           memberships.map((membership) => (
-            <div class="flex flex-col min-w-[15rem] sm:w-[15rem] bg-[#222222] rounded-xl py-6">
-              <p class="text-lg font-semibold text-center">
-                {membership.title}
-              </p>
-              <p class="text-2xl font-bold text-center pb-2">{`$ ${membership.price}`}</p>
-              <div class="bg-black w-full h-[0.15rem] mb-2" />
-              <div class="flex flex-col justify-between h-full">
-                <ul class="flex flex-col gap-2 text-left p-3">
-                  {membership.benefits.map((benefit) => (
-                    <span class="flex flex-row gap-2 items-center">
-                      <img src="./circle-outline-check.png" class="w-4 h-4" />
-                      <li class="text-sm">{benefit}</li>
-                    </span>
-                  ))}
-                </ul>
-                <div class="flex flex-col justify-center items-center">
-                  <Button title="Comprar" />
-                </div>
-              </div>
-            </div>
+            <CardMembership
+              title={membership.title}
+              price={membership.price}
+              benefits={membership.benefits}
+            />
           ))
         }
       </div>

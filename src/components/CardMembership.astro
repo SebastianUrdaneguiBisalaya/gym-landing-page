@@ -1,0 +1,36 @@
+---
+import Button from "./Button.astro";
+
+interface Props {
+  title: string;
+  price: string;
+  benefits: string[];
+}
+
+const { title, price, benefits } = Astro.props as Props;
+---
+
+<div
+  class="flex flex-col min-w-[15rem] sm:w-[15rem] bg-[#222222] rounded-xl py-6"
+>
+  <p class="text-lg font-semibold text-center">
+    {title}
+  </p>
+  <p class="text-2xl font-bold text-center pb-2">{`$ ${price}`}</p>
+  <div class="bg-black w-full h-[0.15rem] mb-2"></div>
+  <div class="flex flex-col justify-between h-full">
+    <ul class="flex flex-col gap-2 text-left p-3">
+      {
+        benefits.map((benefit) => (
+          <span class="flex flex-row gap-2 items-center">
+            <img src="./circle-outline-check.png" class="w-4 h-4" />
+            <li class="text-sm">{benefit}</li>
+          </span>
+        ))
+      }
+    </ul>
+    <div class="flex flex-col justify-center items-center">
+      <Button title="Comprar" />
+    </div>
+  </div>
+</div>
